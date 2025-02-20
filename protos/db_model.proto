@@ -1,0 +1,128 @@
+syntax = "proto3";
+option go_package = "pkg/pbm";
+option csharp_namespace = "Pbm";
+
+message Servers {
+    int32 sid                                       = 1; // 서버 정보 아이디
+    string appId                                    = 2; // 앱 아이디 com.dofiang.episode01~05
+    string uri                                      = 3; // 서버 주소
+    string region                                   = 4; // 지역
+    int32 sort                                      = 5; // 정렬
+    string createAt                                 = 6; // 생성일
+}
+
+message Users {
+    int32 uid                                       = 1; // 유저 인덱스 아이디
+    string email                                    = 2; // 유저 이메일
+    string nickname                                 = 3; // 유저 닉네임
+    string image                                    = 4; // 유저 프로필 이미지
+    string account                                  = 5; // 유저 계좌
+    string isSubscribe                              = 6; // 구독 여부
+    string subscribeAt                              = 7; // 구독 시작
+    string subscribeEndAt                           = 8; // 구독 종료
+    string loginAt                                  = 9; // 최근 접속일
+    string createAt                                 = 10; // 생성일
+    string modifyAt                                 = 11; // 수정일
+    string deleteAt                                 = 12; // 삭제일
+}
+
+message BalanceMasters {
+    int32 bmid                                      = 1; // 잔고 마스터 아이디
+    int32 uid                                       = 2; // 유저아이디
+    string account                                  = 3; // 계좌
+    float totalMoney                                = 4; // 금액
+    string createAt                                 = 5; // 생성일
+    string modifyAt                                 = 6; // 수정일
+    string deleteAt                                 = 7; // 삭제일
+}
+
+message BalanceDetails {
+    int32 bdid                                      = 1; // 잔고 상세 아이디
+    int32 bmid                                      = 2; // 잔고 마스터 아이디
+    float money                                     = 4; // + - 금액
+    string createAt                                 = 5; // 생성일
+}
+
+message Favorities {
+    int32 fid                                       = 1; // 관심 카드 아이디
+    int32 uid                                       = 2; // 관심 카드 유저 아이디
+    string symbol                                   = 3; // 관심 카드 코드
+    string exchange                                 = 4; // 관심 카드 거래소 코드
+    string name                                     = 5; // 관심 카드 이름
+    float price                                     = 6; // 관심 선택당시 카드 금액
+    float change                                    = 7; // 관심 변화
+    float changeRate                                = 8; // 관심 변화율
+    string createAt                                 = 9; // 관심 적용일
+}
+
+message Purchases {
+    int32 pid                                       = 1; // 구매 아이디
+    int32 uid                                       = 2; // 구매 유저 아이디
+    string productId                                = 3; // 구매 상품 코드 S30, S45, S60, S120, C1000...
+    float price                                     = 5; // 구매 금액
+    string createAt                                 = 6; // 구매 일자
+}
+
+message DeckMasters {
+    int32 dmid                                      = 1; // 덱 마스터 아이디
+    int32 uid                                       = 2; // 덱 유저 아이디
+    string appId                                    = 3; // 앱 아이디 com.dofiang.episode01~05
+    string name                                     = 4; // 덱 이름
+    string createAt                                 = 6; // 덱 생성일
+    string modifyAt                                 = 7; // 덱 수정일
+    string deleteAt                                 = 8; // 덱 삭제일
+}
+
+message DeckDetails {
+    int32 ddid                                      = 1; // 덱 상세 아이디
+    int32 dmid                                      = 2; // 덱 마스터 아이디
+    string symbol                                   = 3; // 덱 카드 코드
+    string exchange                                 = 4; // 덱 카드 거래소 코드
+    string name                                     = 5; // 덱 카드 이름
+    float price                                     = 6; // 덱 선택당시 카드 금액
+    float change                                    = 7; // 덱 변화
+    float changeRate                                = 8; // 덱 변화율
+    string createAt                                 = 9; // 덱 적용일
+}
+
+message GameRecordMasters {
+    int32 grmid                                     = 1; // 게임 레코드 마스터 아이디
+    string grtype                                   = 2; // 게임 룸 타입 싱글/멀티 S, M
+    string rid                                      = 3; // 게임 룸 아이디
+    string appId                                    = 4; // 앱 아이디 com.dofiang.episode01~05
+    string createAt                                 = 6; // 생성일
+	string modifyAt                                 = 7; // 수정일
+	string deleteAt                                 = 8; // 삭제일
+}
+
+message GameRecordDetails {
+    int32 grdid                                     = 1; // 게임 레코드 상세 아이디
+    int32 grmid                                     = 2; // 게임 레코드 마스터 아이디
+    int32 uid                                       = 3; // 게임 유저 아이디
+    string record                                   = 4; // W, F, D
+}
+
+message PokerGameMasters {
+	int32 pkgmid                                    = 1; // 포커 게임 마스터 아이디
+    int32 grmid                                     = 2; // 게임 레코드 마스터 아이디
+	float totalBettingPrice                         = 3; // 총 배팅 금액
+	string createAt                                 = 4; // 생성일
+	string modifyAt                                 = 5; // 수정일
+	string deleteAt                                 = 6; // 삭제일
+}
+
+message PokerGameDetails {
+	int32 pkgdbid                                   = 1; // 포커게임 상세 아이디
+	int32 pkgmid                                    = 2; // 포커게임 마스터 아이디
+	int32 uid                                       = 3; // 유저아이디
+	float bettingPrice                              = 4; // 유저 배팅금액
+	float rewardPrice                               = 6; // 보상 금액
+}
+
+
+message Ratios {
+    int32 rid                                       = 1;
+    string ratio                                    = 2;
+    string region                                   = 3;
+    string createAt                                 = 4;
+}

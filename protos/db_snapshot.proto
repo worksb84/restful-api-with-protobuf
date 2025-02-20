@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "pkg/pbm";
+option csharp_namespace = "Pbm";
+
+message SnapshotLogs {
+    int32 slid                                      = 1;
+    string snapshot                                 = 2;
+    string region                                   = 3;
+    string createAt                                 = 4;
+}
+
+message Snapshot {
+	string n                                        = 1; // 종목명
+	string ne                                       = 2; // 종목명영문
+	string s                                        = 3; // 심볼(종목코드드)
+	string e                                        = 4; // 거래소 ex(KOSPI, KOSDAQ, NYSE, NASDAQ)
+	double c                                        = 5; // 등락차이
+	double cr                                       = 6; // 등락률
+	double pcp                                      = 7; // 전일자종가
+	double cp                                       = 8; // 현재가(현재종가)
+	double op                                       = 9; // 시가
+	double hp                                       = 10; // 고가
+	double lp                                       = 11; // 저가가
+}
+
+message Stream {
+	string action									= 1; // subscribe, unsubscribe
+	string region									= 2; // KRX (한국주식), SEC (미국주식)
+	repeated string symbols							= 3; // 심볼(종목코드드)
+}

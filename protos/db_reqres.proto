@@ -1,0 +1,209 @@
+syntax = "proto3";
+option go_package = "pkg/pbm";
+option csharp_namespace = "Pbm";
+
+message ReqLogin {
+    string email                                    = 1; // 유저 이메일
+    string nickname                                 = 2; // 유저 닉네임
+    string image                                    = 3; // 유저 프로필 이미지
+}
+
+message ResLogin {
+    int32 uid                                       = 1; // 유저 인덱스 아이디
+    string email                                    = 2; // 유저 이메일
+    string nickname                                 = 3; // 유저 닉네임
+    string image                                    = 4; // 유저 프로필 이미지
+    string account                                  = 5; // 유저 계좌
+    float totalMoney                                = 6; // 금액
+    string isSubscribe                              = 7; // 구독 여부
+    string subscribeAt                              = 8; // 구독 시작
+    string subscribeEndAt                           = 9; // 구독 종료
+}
+
+message ResProfile {
+    int32 uid                                       = 1; // 유저 인덱스 아이디
+    string email                                    = 2; // 유저 이메일
+    string nickname                                 = 3; // 유저 닉네임
+    string image                                    = 4; // 유저 프로필 이미지
+    string account                                  = 5; // 유저 계좌
+    float totalMoney                                = 6; // 금액
+    string isSubscribe                              = 7; // 구독 여부
+    string subscribeAt                              = 8; // 구독 시작
+    string subscribeEndAt                           = 9; // 구독 종료
+    int32 games                                     = 10; // 총 게임 횟수
+    int32 win                                       = 11; // 총 승리 횟수
+    int32 defeat                                    = 12; // 총 패배 횟수
+    int32 draw                                      = 13; // 총 비김 횟수
+}
+
+message ResServers {
+    int32 sid                                       = 1; // 서버 정보 아이디
+    string appId                                    = 2; // 앱 아이디 com.dofiang.episode01~05
+    string uri                                      = 3; // 서버 주소
+    string region                                   = 4; // 지역
+    int32 sort                                      = 5; // 정렬
+    string createAt                                 = 6; // 생성일
+}
+
+message ReqUpdateBalance {
+    int32 uid                                       = 1; // 유저 인덱스 아이디
+    float money                                     = 2; // + - 금액
+}
+
+message ResDeckList {
+    repeated ReqResDeck decklist                    = 1; // 덱 리스트
+}
+
+message ResFavoriteList {
+    repeated ReqResFavorities favoriteList          = 1; // 관심 카드 리스트
+}
+
+message ReqResDeckDetails {
+    int32 ddid                                      = 1; // 덱 상세 아이디
+    int32 dmid                                      = 2; // 덱 마스터 아이디
+    string symbol                                   = 3; // 덱 카드 코드
+    string exchange                                 = 4; // 덱 카드 거래소 코드
+    string name                                     = 5; // 덱 카드 이름
+    float price                                     = 6; // 덱 선택당시 카드 금액
+    float change                                    = 7; // 덱 변화
+    float changeRate                                = 8; // 덱 변화율
+    string createAt                                 = 9; // 덱 적용일
+}
+
+message ReqResDeck {
+    int32 dmid                                      = 1; // 덱 마스터 아이디
+    int32 uid                                       = 2; // 덱 유저 아이디
+    string appId                                    = 3; // 앱 아이디 com.dofiang.episode01~05
+    string name                                     = 4; // 덱 이름
+    string createAt                                 = 6; // 덱 생성일
+    string modifyAt                                 = 7; // 덱 수정일
+    string deleteAt                                 = 8; // 덱 삭제일
+    repeated ReqResDeckDetails deckDetails          = 9; // 덱 상세 리스트
+}
+
+message ReqResFavorities {
+    int32 fid                                       = 1; // 관심 카드 아이디
+    int32 uid                                       = 2; // 관심 카드 유저 아이디
+    string symbol                                   = 3; // 관심 카드 코드
+    string exchange                                 = 4; // 관심 카드 거래소 코드
+    string name                                     = 5; // 관심 카드 이름
+    float price                                     = 6; // 관심 선택당시 카드 금액
+    float change                                    = 7; // 관심 변화
+    float changeRate                                = 8; // 관심 변화율
+    string createAt                                 = 9; // 관심 적용일
+}
+
+message ReqPurchases {
+    int32 uid                                       = 1; // 구매 유저 아이디
+    string productId                                = 2; // 구매 상품 코드 S30, S45, S60, S120, C1000...
+    float price                                     = 3; // 구매 금액
+}
+
+// REQBY
+message ReqByUID {
+	int32 uid                                       = 1; // 유저아이디
+}
+
+message ReqByAppID {
+    string appId                                    = 1; // 앱 아이디 com.dofiang.episode01~05
+}
+
+message ReqByAppIDandUID {
+    int32 uid                                       = 1; // 유저 인덱스 아이디
+    string appId                                    = 2; // 앱 아이디 com.dofiang.episode01~05
+}
+
+message ReqByDeckMastersID {
+    int32 dmid                                      = 1; // 덱 마스터 아이디
+}
+
+message ReqBySymbolAndUID {
+	int32 uid                                       = 1; // 유저아이디
+    string symbol                                   = 2; // 관심 카드 코드
+}
+
+message ReqResSnapshotLogs {
+    int32 slid                                      = 1;
+    string snapshot                                 = 2;
+    string region                                   = 3;
+    string createAt                                 = 4;
+}
+
+message ReqBySymbol {
+    string symbol                                   = 1;
+    string region                                   = 2;
+}
+
+message ResSnapshot {
+	string n                                        = 1; // 종목명
+	string ne                                       = 2; // 종목명영문
+	string s                                        = 3; // 심볼(종목코드드)
+	string e                                        = 4; // 거래소 ex(KOSPI, KOSDAQ, NYSE, NASDAQ)
+	double c                                        = 5; // 등락차이
+	double cr                                       = 6; // 등락률
+	double pcp                                      = 7; // 전일자종가
+	double cp                                       = 8; // 현재가(현재종가)
+	double op                                       = 9; // 시가
+	double hp                                       = 10; // 고가
+	double lp                                       = 11; // 저가가
+}
+
+message ResSnapshots {
+    repeated ResSnapshot snapshots                  = 1;
+}
+
+
+message ReqResRatios {
+    int32 rid                                       = 1;
+    string ratio                                    = 2;
+    string region                                   = 3;
+    string createAt                                 = 4;
+}
+
+message ResRatios {
+	string s                                        = 1; // 심볼(종목코드드)
+	double cp                                       = 2; // 현재가(현재종가)
+	double c                                        = 3; // 등락차이
+	double cr                                       = 4; // 등락률
+	double eps                                      = 5; // EPS
+	double per                                      = 6; // PBR
+	double bps                                      = 7; // BPS
+	double pbr                                      = 8; // PBR
+	double d                                        = 9; // 주당배당금
+	double dr                                       = 10; // 배당수익률률
+}
+
+
+message ResSECTickerDetail {
+    string address                                  = 1;
+    string branding                                 = 2;
+    string cik                                      = 3;
+    string compositeFigi                            = 4;
+    string currencyName                             = 5;
+    string description                              = 6;
+    string homepageUrl                              = 7;
+    string listDate                                 = 8;
+    string locale                                   = 9;
+    string market                                   = 10;
+    double marketCap                                = 11;
+    string name                                     = 12;
+    string phoneNumber                              = 13;
+    string primaryExchange                          = 14;
+    string shareClassFigi                           = 15;
+    double shareClassSharesOutstanding              = 16;
+    string sicCode                                  = 17;
+    string sicDescription                           = 18;
+    string ticker                                   = 19;
+    string tickerRoot                               = 20;
+    double totalEmployees                           = 21;
+    double weightedSharesOutstanding                = 22;
+}
+
+message RelatedCompanies {
+    string name                                     = 1;
+    string ticker                                   = 2;
+}
+
+message ResRelatedCompanies {
+    repeated RelatedCompanies RelatedCompanies      = 1;
+}
